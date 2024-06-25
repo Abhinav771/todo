@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:easy_date_timeline/easy_date_timeline.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,8 +20,11 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
   late AnimationController _animationController;
   String user_name='Yash';
-  double p=0.5;
+  double p=0.0;
   // int percent_value=(percent*100).toInt();
+  final EasyInfiniteDateTimelineController _controller =
+  EasyInfiniteDateTimelineController();
+  DateTime _focusDate = DateTime.now();
   @override
 
   void initState() {
@@ -32,9 +36,9 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
   }
   void _updatePercent(double newPercent) {
     setState(() {
-      p = newPercent;
+      p += newPercent;
     });
-    _animationController.forward(from: 0.0); // Start the animation from the beginning
+    _animationController.forward(from: p); // Start the animation from the beginning
   }
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -90,13 +94,7 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
 
                       circularStrokeCap: CircularStrokeCap.round, // This makes the ends rounded
                     ),
-                    ElevatedButton(onPressed: (){
-                      setState(() {
-                        _updatePercent(0.75);
-                      });
-                    },
-                        // tooltip: 'Animate',
-                        child: Icon(Icons.play_arrow),)
+
 
 
 
@@ -105,7 +103,25 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
                 ),
               ),
               ),
-
+            EasyInfiniteDateTimeLine(
+              controller: _controller,
+              firstDate: DateTime(2024),
+              focusDate: _focusDate,
+              lastDate: DateTime(2024, 12, 31),
+              onDateChange: (selectedDate) {
+                setState(() {
+                  _focusDate = selectedDate;
+                });
+              },
+            ),
+            ElevatedButton(onPressed: (){
+              setState(() {
+                _updatePercent(0.2);
+              });
+            },
+              // tooltip: 'Animate',
+              child: Icon(Icons.play_arrow),
+            )
           ],),
         ),
       ),
