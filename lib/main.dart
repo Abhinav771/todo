@@ -1,8 +1,6 @@
-import 'dart:ffi';
+// import 'dart:ffi';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 
@@ -25,6 +23,7 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
   final EasyInfiniteDateTimelineController _controller =
   EasyInfiniteDateTimelineController();
   DateTime _focusDate = DateTime.now();
+  var days={1:'Mon',2:'Tue',3:'Wed',4:'Thr',5:'Fri',6:'Sat',7:'Sun'};
   @override
 
   void initState() {
@@ -104,10 +103,60 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
               ),
               ),
             EasyInfiniteDateTimeLine(
+
               controller: _controller,
               firstDate: DateTime(2024),
               focusDate: _focusDate,
               lastDate: DateTime(2024, 12, 31),
+              // activeColor: Color(0XFF0BC682),
+              itemBuilder: (BuildContext context, DateTime date,
+              bool isHighlighted, void Function() onDayPressed) {
+                bool isSelected =
+                    date.year == _focusDate.year &&
+                        date.month == _focusDate.month &&
+                        date.day == _focusDate.day;
+                Color textColor = isSelected ? Colors.white : Colors.black;
+                return InkWell(
+                    onTap: () {
+                  onDayPressed();
+                                },
+                  child: Container(
+
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: isSelected ? Colors.green : Colors.transparent,
+                      borderRadius: BorderRadius.circular(50.0),
+                      border: Border.all(
+                        color: Colors.green, // Border color
+                        width: 2.0, // Border width
+                      ),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          '${date.day}',
+                          style: TextStyle(
+                            color: textColor,
+                            fontWeight:
+                            isSelected ? FontWeight.bold : FontWeight.normal,
+                          ),
+                        ),
+                        Text(
+                          '${days[date.weekday]}',
+                          style: TextStyle(
+                            color: textColor,
+                            fontWeight:
+                            isSelected ? FontWeight.bold : FontWeight.normal,
+                          ),
+                        ),
+                      ],
+
+                    ),
+
+                  ),
+                );
+              },
               onDateChange: (selectedDate) {
                 setState(() {
                   _focusDate = selectedDate;
@@ -123,6 +172,7 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
               child: Icon(Icons.play_arrow),
             )
           ],),
+
         ),
       ),
     );
