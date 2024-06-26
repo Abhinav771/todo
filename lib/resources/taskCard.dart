@@ -34,7 +34,14 @@ class TaskCard extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Image.asset(imgSrc),
+                    child: SizedBox(
+                      height: 60,
+                      width: 60,
+                      child: Image.asset(imgSrc,
+                        height: double.infinity,
+                        width: double.infinity,
+                      ),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -74,6 +81,12 @@ class TaskCard extends StatelessWidget {
               ),
             ),
           ),
+          // Container(
+          //   child: FloatingActionButton(onPressed: (){
+          //
+          //   }),
+          // )
+
         ],
       ),
     );
