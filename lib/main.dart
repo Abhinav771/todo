@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
+import 'package:roundcheckbox/roundcheckbox.dart';
 
 void main() {
   runApp(const MyApp());
@@ -125,10 +126,10 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: isSelected ? Colors.green : Colors.transparent,
-                      borderRadius: BorderRadius.circular(50.0),
+                      borderRadius: BorderRadius.circular(8.0),
                       border: Border.all(
                         color: Colors.green, // Border color
-                        width: 2.0, // Border width
+                        width: 1.0, // Border width
                       ),
                     ),
                     child: Column(
@@ -170,7 +171,68 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
             },
               // tooltip: 'Animate',
               child: Icon(Icons.play_arrow),
+            ),
+
+            Container(
+              child: Column(children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+
+                        decoration: BoxDecoration(
+                          color: Color(0XFF9BC3FF),
+                          borderRadius: BorderRadius.circular(8),
+
+                        ),
+
+
+
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.asset('images/swimming.png'),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(children: [
+                              Text('Swimming',
+
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 30,
+                                  color: Color(0XFF458CFF),
+                                ),
+                              ),
+                              Text('3:00 - 4:00',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 15,
+                                  color: Color(0XFF458CFF),
+                                ),
+                              ),
+                            ],)
+                          ),
+                          RoundCheckBox(
+                            onTap: (selected) {
+
+                            },
+                            size: 45,
+                            uncheckedColor: Color(0XFFFFFFFF),
+                            checkedColor: Color(0XFF458CFF),
+                            borderColor: Color(0XFF9BC3FF),
+                            animationDuration: Duration(
+                              milliseconds: 250,
+                            ),
+                          ),
+
+                      ],),
+                    ),
+                  )
+              ],),
             )
+
           ],),
 
         ),
