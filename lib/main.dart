@@ -85,8 +85,10 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        // floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
         // backgroundColor: Colors.black,
-        body: SafeArea(
+        body:
+        SafeArea(
           child: Column(children: [
             SizedBox(height: 30,),
             Container(
@@ -215,6 +217,7 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
               // tooltip: 'Animate',
               child: Icon(Icons.play_arrow),
             ),
+            Text('Tasks'),
             Expanded(
               child: ListView.builder(
                 itemCount: tasks.length,
@@ -230,6 +233,39 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
           ],),
 
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        // Places the FloatingActionButton at the bottom end corner, docked to the Scaffold
+
+        floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 8,bottom: 8),
+              child: FloatingActionButton(
+
+
+                onPressed: () {
+                  // Add your onPressed logic here
+                  print('Floating Action Button pressed');
+                },
+                child: Icon(Icons.bar_chart),
+                backgroundColor: Colors.blue,
+              ),
+            ),
+            FloatingActionButton(
+
+              onPressed: () {
+                // Add your onPressed logic here
+                print('Floating Action Button pressed');
+              },
+              child: Icon(Icons.add),
+              backgroundColor: Colors.blue,
+            ),
+          ],
+
+        ),
+
+
       ),
     );
   }
