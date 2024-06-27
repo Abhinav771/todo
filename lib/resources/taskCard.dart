@@ -81,7 +81,7 @@ class TaskCard extends StatelessWidget {
 
 
                       },
-                      
+
                       size: 45,
                       uncheckedColor: Colors.white,
                       checkedColor: highlightedColor,
@@ -94,9 +94,7 @@ class TaskCard extends StatelessWidget {
             ),
           ),
           // Container(
-          //   child: FloatingActionButton(onPressed: (){
           //
-          //   }),
           // )
 
         ],

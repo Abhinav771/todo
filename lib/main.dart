@@ -5,9 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:todo/resources/taskCard.dart';
+import 'package:todo/resources/addTask.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(home: MyApp(),));
 }
 
 class MyApp extends StatefulWidget {
@@ -83,8 +84,7 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
     _animationController.forward(from: p); // Start the animation from the beginning
   }
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return  Scaffold(
         // floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
         // backgroundColor: Colors.black,
         body:
@@ -255,18 +255,19 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
             FloatingActionButton(
 
               onPressed: () {
-                // Add your onPressed logic here
-                print('Floating Action Button pressed');
+
+                showDialog(context: context, builder: (context)=>addTask(),
+                );
               },
-              child: Icon(Icons.add),
               backgroundColor: Colors.blue,
+              child: Icon(Icons.add),
             ),
           ],
 
         ),
 
 
-      ),
+
     );
   }
 }
