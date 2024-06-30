@@ -1,11 +1,15 @@
 // import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:todo/resources/taskCard.dart';
 import 'package:todo/resources/addTask.dart';
+import 'package:todo/resources/productivity.dart';
+import 'package:todo/resources/percentage.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MaterialApp(home: MyApp(),));
@@ -14,14 +18,17 @@ void main() {
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+
   @override
+
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
   late AnimationController _animationController;
   String user_name='Yash';
-  double p=0.0;
+
+  
   // int percent_value=(percent*100).toInt();
   final EasyInfiniteDateTimelineController _controller =
   EasyInfiniteDateTimelineController();
@@ -68,206 +75,234 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
     ),
   ];
 
-  @override
 
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 500), // Animation duration
-    );
-  }
-  void _updatePercent(double newPercent) {
+
+
+
+  void _updatePercent() {
     setState(() {
-      p += newPercent;
+
+      _animationController.forward(from: 0);
     });
-    _animationController.forward(from: p); // Start the animation from the beginning
+    // Start the animation from the beginning
   }
+  @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-        // floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
-        // backgroundColor: Colors.black,
-        body:
-        SafeArea(
-          child: Column(children: [
-            SizedBox(height: 30,),
-            Container(
-              child:
-              Text('Hello $user_name',
-                style: const TextStyle(
-                  color: Colors.black87,
-                  fontSize: 30,
-                  // fontFamily: 'NotoSans',
-                  fontWeight: FontWeight.w900,
-                ),
+    return  MultiProvider(
+      providers: [
+        ChangeNotifierProvider<Percentage>(create: (_) => Percentage()),
+      ],
+      child: Scaffold(
 
-              ),
-
-            ),
-            SizedBox(height: 30,),
-            SizedBox(
-              // height: 420,
-              child: Container(
-
-                color: const Color(0XFFEEFFF9),
-                margin: EdgeInsets.all(16),
-                child:Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-
-                    Column(children: [
-                      Text('Task Completed!',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700),),
-                      Container(
-                          child: Text('3/5',style: TextStyle(fontSize: 30,fontWeight: FontWeight.w900),)),
-
-                                      ],),
-                    CircularPercentIndicator(
-
-                      radius: 60.0,
-                      lineWidth: 10.0,
-                      animation: true,
-                      animationDuration:500,
-                      percent:p,
-                      center: Text('${(p * 100).toInt()}%',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      backgroundColor: Color(0XFFC6FEF1),
-                      progressColor: Color(0XFF0BC682),
-
-                      circularStrokeCap: CircularStrokeCap.round, // This makes the ends rounded
-                    ),
-
-
-
-
-                  ],
+          body:
+          SafeArea(
+            child: Column(children: [
+              SizedBox(height: 30,),
+              Container(
+                child:
+                Text('Hello $user_name',
+                  style: const TextStyle(
+                    color: Colors.black87,
+                    fontSize: 30,
+                    // fontFamily: 'NotoSans',
+                    fontWeight: FontWeight.w900,
+                  ),
 
                 ),
+
               ),
-              ),
-            EasyInfiniteDateTimeLine(
+              SizedBox(height: 30,),
+              SizedBox(
+                // height: 420,
+                child: Container(
 
-              controller: _controller,
-              firstDate: DateTime(2024),
-              focusDate: _focusDate,
-              lastDate: DateTime(2024, 12, 31),
-              // activeColor: Color(0XFF0BC682),
-              itemBuilder: (BuildContext context, DateTime date,
-              bool isHighlighted, void Function() onDayPressed) {
-                bool isSelected =
-                    date.year == _focusDate.year &&
-                        date.month == _focusDate.month &&
-                        date.day == _focusDate.day;
-                Color textColor = isSelected ? Colors.white : Colors.black;
-                return InkWell(
-                    onTap: () {
-                  onDayPressed();
-                                },
-                  child: Container(
+                  color: const Color(0XFFEEFFF9),
+                  margin: EdgeInsets.all(16),
+                  child:Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Consumer<Percentage>(builder: (context,per,child){
+                        return  Column(children: [
+                          Text('Task Completed!',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700),),
 
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: isSelected ? Colors.green : Colors.transparent,
-                      borderRadius: BorderRadius.circular(8.0),
-                      border: Border.all(
-                        color: Colors.green, // Border color
-                        width: 1.0, // Border width
-                      ),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          '${date.day}',
-                          style: TextStyle(
-                            color: textColor,
-                            fontWeight:
-                            isSelected ? FontWeight.bold : FontWeight.normal,
+                          Container(
+                              child: Row(children: [
+
+                                Text('${per.taskCompleted}',
+                                  style: TextStyle(
+                                      fontSize: 30,
+                                      color: Color(0XFF0BC682),
+                                      fontWeight: FontWeight.w900),),
+                                Text('/${per.totalTasks}',
+                                  style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.w900),)
+                              ],)
+
                           ),
-                        ),
-                        Text(
-                          '${days[date.weekday]}',
-                          style: TextStyle(
-                            color: textColor,
-                            fontWeight:
-                            isSelected ? FontWeight.bold : FontWeight.normal,
-                          ),
-                        ),
-                      ],
 
-                    ),
+                        ],);
+                      }),
+                      Consumer<Percentage>(builder: (context,per,child){
+                        return CircularPercentIndicator(
+
+                          radius: 60.0,
+                          lineWidth: 10.0,
+                          animation: true,
+                          animationDuration:500,
+                          percent:per.percentage,
+                          center: Text('${(per.percentage * 100).toInt()}%',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          backgroundColor: Color(0XFFC6FEF1),
+                          progressColor: Color(0XFF0BC682),
+
+                          circularStrokeCap: CircularStrokeCap.round, // This makes the ends rounded
+                        );
+                      }),
+
+
+
+
+
+                    ],
 
                   ),
-                );
-              },
-              onDateChange: (selectedDate) {
-                setState(() {
-                  _focusDate = selectedDate;
-                });
-              },
-            ),
-            ElevatedButton(onPressed: (){
-              setState(() {
-                _updatePercent(0.2);
-              });
-            },
-              // tooltip: 'Animate',
-              child: Icon(Icons.play_arrow),
-            ),
-            Text('Tasks'),
-            Expanded(
-              child: ListView.builder(
-                itemCount: tasks.length,
-                itemBuilder: (context, index) {
-                  return tasks[index];
+                ),
+                ),
+              EasyInfiniteDateTimeLine(
+
+                controller: _controller,
+                firstDate: DateTime(2024),
+                focusDate: _focusDate,
+                lastDate: DateTime(2024, 12, 31),
+                // activeColor: Color(0XFF0BC682),
+                itemBuilder: (BuildContext context, DateTime date,
+                bool isHighlighted, void Function() onDayPressed) {
+                  bool isSelected =
+                      date.year == _focusDate.year &&
+                          date.month == _focusDate.month &&
+                          date.day == _focusDate.day;
+                  Color textColor = isSelected ? Colors.white : Colors.black;
+                  return InkWell(
+                      onTap: () {
+                    onDayPressed();
+                                  },
+                    child: Container(
+
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: isSelected ? Colors.green : Colors.transparent,
+                        borderRadius: BorderRadius.circular(8.0),
+                        border: Border.all(
+                          color: Colors.green, // Border color
+                          width: 1.0, // Border width
+                        ),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            '${date.day}',
+                            style: TextStyle(
+                              color: textColor,
+                              fontWeight:
+                              isSelected ? FontWeight.bold : FontWeight.normal,
+                            ),
+                          ),
+                          Text(
+                            '${days[date.weekday]}',
+                            style: TextStyle(
+                              color: textColor,
+                              fontWeight:
+                              isSelected ? FontWeight.bold : FontWeight.normal,
+                            ),
+                          ),
+                        ],
+
+                      ),
+
+                    ),
+                  );
+                },
+                onDateChange: (selectedDate) {
+                  setState(() {
+                    _focusDate = selectedDate;
+                  });
                 },
               ),
-            ),
-
-
-
-
-          ],),
-
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        // Places the FloatingActionButton at the bottom end corner, docked to the Scaffold
-
-        floatingActionButton: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 8,bottom: 8),
-              child: FloatingActionButton(
-
-
-                onPressed: () {
-                  // Add your onPressed logic here
-                  print('Floating Action Button pressed');
+              Consumer<Percentage>(builder: (context,per,child){
+                return ElevatedButton(onPressed: (){
+                  per.incTaskComp();
                 },
-                child: Icon(Icons.bar_chart),
-                backgroundColor: Colors.blue,
-              ),
-            ),
-            FloatingActionButton(
-
-              onPressed: () {
-
-                showDialog(context: context, builder: (context)=>addTask(),
+                  // tooltip: 'Animate',
+                  child: Icon(Icons.play_arrow),
                 );
-              },
-              backgroundColor: Colors.blue,
-              child: Icon(Icons.add),
-            ),
-          ],
+              }),
 
-        ),
+              Text('Tasks'),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: tasks.length,
+                  itemBuilder: (context, index) {
+                    return tasks[index];
+                  },
+                ),
+              ),
 
 
 
+
+            ],),
+
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+          // Places the FloatingActionButton at the bottom end corner, docked to the Scaffold
+
+          floatingActionButton: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 8,bottom: 8),
+                child: FloatingActionButton(
+
+
+                  onPressed: () {
+                    // Add your onPressed logic here
+                    showDialog(context: context, builder: (context)=>productivity(),);
+                  },
+                  child: Icon(Icons.bar_chart,
+
+                  color: Colors.white,),
+                  backgroundColor: Colors.blue,
+                ),
+              ),
+              Consumer<Percentage>(builder: (context,per,child){
+                return FloatingActionButton(
+
+                  onPressed: () {
+
+                    showDialog(context: context, builder: (context)=>addTask(), );
+                    per.incTotalTask();
+
+
+
+                  },
+                  backgroundColor: Colors.blue,
+                  child: Icon(Icons.add, color: Colors.white,),
+                );
+              }),
+
+            ],
+
+          ),
+
+
+
+      ),
     );
   }
 }

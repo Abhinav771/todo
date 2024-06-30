@@ -1,12 +1,14 @@
 // import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
+import 'package:todo/resources/percentage.dart';
 
 
 
 
-class TaskCard extends StatelessWidget {
+class TaskCard extends StatefulWidget {
   final Color backgroundColor;
   final Color highlightedColor;
   final String imgSrc;
@@ -19,7 +21,13 @@ class TaskCard extends StatelessWidget {
     required this.taskName,
   });
 
+  @override
+  State<TaskCard> createState() => _TaskCardState();
+}
+
+class _TaskCardState extends State<TaskCard> {
   // bool? isChecked = false;
+  final Percentage percentage = Percentage();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +42,7 @@ class TaskCard extends StatelessWidget {
               },
               child: Container(
                 decoration: BoxDecoration(
-                  color: backgroundColor,
+                  color: widget.backgroundColor,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Row(
@@ -45,7 +53,7 @@ class TaskCard extends StatelessWidget {
                       child: SizedBox(
                         height: 60,
                         width: 60,
-                        child: Image.asset(imgSrc,
+                        child: Image.asset(widget.imgSrc,
                           height: double.infinity,
                           width: double.infinity,
                         ),
@@ -57,11 +65,11 @@ class TaskCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            taskName,
+                            widget.taskName,
                             style: TextStyle(
                               fontWeight: FontWeight.w900,
                               fontSize: 30,
-                              color: highlightedColor,
+                              color: widget.highlightedColor,
                             ),
                           ),
                           Text(
@@ -69,25 +77,30 @@ class TaskCard extends StatelessWidget {
                             style: TextStyle(
                               fontWeight: FontWeight.w900,
                               fontSize: 15,
-                              color: highlightedColor,
+                              color: widget.highlightedColor,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    RoundCheckBox(
-                      onTap: (selected) {
+                    Consumer<Percentage>(
+                    builder: (context,per,child){
+                      return RoundCheckBox(
 
 
+                        size: 45,
+                        uncheckedColor: Colors.white,
+                        checkedColor: widget.highlightedColor,
+                        borderColor: widget.backgroundColor,
+                        animationDuration: Duration(milliseconds: 250),
+                        onTap: (selected) {
 
-                      },
+                          per.incTaskComp();
+                        },
+                      );
+                    }),
 
-                      size: 45,
-                      uncheckedColor: Colors.white,
-                      checkedColor: highlightedColor,
-                      borderColor: backgroundColor,
-                      animationDuration: Duration(milliseconds: 250),
-                    ),
+
                   ],
                 ),
               ),
