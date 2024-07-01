@@ -53,6 +53,8 @@ class _addTaskState extends State<addTask> {
                   data.updateCat(_dropdownValue);
                   data.updateTask(_taskTEC.text);
                   data.updateTime(selectedTime);
+                  data.updateDetails(_dropdownValue, _taskTEC.text, selectedTime);
+
                   Navigator.of(context).pop();
                   }
 

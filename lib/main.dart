@@ -247,9 +247,9 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
 
               Consumer<Data>(builder: (context,data,child){
                   return Column(children: [
-                      Text('${data.category}'),
-                      Text('${data.task}'),
-                      Text('${data.selectedTime?.format(context)}'),
+                      Text('${data.addTaskDetails[data.lastIndex][0]}'),
+                      Text('${data.addTaskDetails[data.lastIndex][1]}'),
+                      Text('${data.addTaskDetails[data.lastIndex][2]?.format(context)}'),
                   ],);
               }),
 
