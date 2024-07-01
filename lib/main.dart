@@ -35,7 +35,9 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
   late AnimationController _animationController;
-  String user_name='Yash';
+  String user_name='Abhinav';
+  String wish="Good Morning";
+
 
   
   // int percent_value=(percent*100).toInt();
@@ -45,46 +47,7 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
   var days={1:'Mon',2:'Tue',3:'Wed',4:'Thr',5:'Fri',6:'Sat',7:'Sun'};
 
 
-  // List<TaskCard> tasks=[
-  //   TaskCard(
-  //     backgroundColor: const Color(0XFF9BC3FF),
-  //     highlightedColor: const Color(0XFF458CFF),
-  //     imgSrc: 'images/swimming.png',
-  //     taskName: 'Swimming',
-  //   ),
-  //   TaskCard(
-  //     backgroundColor: const Color(0XFF65DCB2),
-  //     highlightedColor: const Color(0XFF0EC075),
-  //     imgSrc: 'images/running.png',
-  //     taskName: 'Running',
-  //   ),
-  //   TaskCard(
-  //     backgroundColor: const Color(0XFFFFE29C),
-  //     highlightedColor: const Color(0XFFFFC536),
-  //     imgSrc: 'images/yoga.png',
-  //     taskName: 'Yoga',
-  //   ),
-  //   TaskCard(
-  //     backgroundColor: const Color(0XFF4FD7F4),
-  //     highlightedColor: const Color(0XFF126B7E),
-  //     imgSrc: 'images/work.png',
-  //     taskName: 'Work',
-  //   ),
-  //   TaskCard(
-  //     backgroundColor: const Color(0XFFFBCEE2),
-  //     highlightedColor: const Color(0XFFF69FC2),
-  //     imgSrc: 'images/shopping.png',
-  //     taskName: 'Shopping',
-  //   ),
-  //   TaskCard(
-  //     backgroundColor: const Color(0XFFFFAD5E),
-  //     highlightedColor: const Color(0XFFFE810A),
-  //     imgSrc: 'images/other.png',
-  //     taskName: 'Other',
-  //   ),
-  // ];
-  //
-  //
+
 
 
 
@@ -95,28 +58,47 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
     });
     // Start the animation from the beginning
   }
+
+
   @override
   Widget build(BuildContext context) {
     return   Scaffold(
-
+          // appBar: AppBar(title: Text('ToDo App'),),
           body:
           SafeArea(
-            child: Column(children: [
-              SizedBox(height: 30,),
+            child: Column(
+              // mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+              SizedBox(height: 15,),
               Container(
                 child:
-                Text('Hello $user_name',
-                  style: const TextStyle(
-                    color: Colors.black87,
-                    fontSize: 30,
-                    // fontFamily: 'NotoSans',
-                    fontWeight: FontWeight.w900,
+                Padding(
+                  padding: const EdgeInsets.only(left: 16),
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Hello ',
+                          style: TextStyle(fontSize: 24.0, color: Colors.black,fontWeight: FontWeight.w500),
+                        ),
+                        TextSpan(
+                          text: '$user_name'+'!',
+                          style: TextStyle(fontSize: 32.0, color: Colors.blue, fontWeight: FontWeight.w900),
+                        ),
+
+                      ],
+                    ),
                   ),
 
                 ),
 
               ),
-              SizedBox(height: 30,),
+              Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: Text('Good Morning',style: TextStyle(color: Color(0XFF777777)),),
+              ),
+              SizedBox(height: 16,),
               SizedBox(
                 // height: 420,
                 child: Container(
@@ -148,6 +130,7 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
 
                         ],);
                       }),
+
                       Consumer<Percentage>(builder: (context,per,child){
                         return CircularPercentIndicator(
 
@@ -178,7 +161,7 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
                   ),
                 ),
                 ),
-
+                SizedBox(height: 16,),
               Consumer<TaskList>(builder: (context,taskList,child){
                 return EasyInfiniteDateTimeLine(
 
@@ -244,24 +227,26 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
                 );
               }),
 
-              Consumer<Percentage>(builder: (context,per,child){
-                return ElevatedButton(onPressed: (){
-                  per.incTaskComp();
-                },
-                  // tooltip: 'Animate',
-                  child: Icon(Icons.play_arrow),
-                );
-              }),
+              // Consumer<Percentage>(builder: (context,per,child){
+              //   return ElevatedButton(onPressed: (){
+              //     per.incTaskComp();
+              //   },
+              //     // tooltip: 'Animate',
+              //     child: Icon(Icons.play_arrow),
+              //   );
+              // }),
 
-              Consumer<Data>(builder: (context,data,child){
-                  return Column(children: [
-                      Text('${data.addTaskDetails[data.lastIndex][0]}'),
-                      Text('${data.addTaskDetails[data.lastIndex][1]}'),
-                      Text('${data.addTaskDetails[data.lastIndex][2]?.format(context)}'),
-                  ],);
-              }),
+              // Consumer<Data>(builder: (context,data,child){
+              //     return Column(children: [
+              //         Text('${data.addTaskDetails[data.lastIndex][0]}'),
+              //         Text('${data.addTaskDetails[data.lastIndex][1]}'),
+              //         Text('${data.addTaskDetails[data.lastIndex][2]?.format(context)}'),
+              //     ],);
+              // }),
 
-              Text('Tasks'),
+              Text('Tasks',style: TextStyle(
+                fontSize: 24,
+              ),),
               Consumer<TaskList>(builder: (context,taskList,child){
                 return Expanded(
                   child: ListView.builder(

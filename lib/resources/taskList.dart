@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:todo/resources/taskCard.dart';
 
 class TaskList with ChangeNotifier {
+  String wish='Good Night';
+
   DateTime focusDate=DateTime(2024,7,1);
 
   updateDate(){
@@ -13,22 +15,27 @@ class TaskList with ChangeNotifier {
     focusDate = DateTime(year, month, day);
     notifyListeners();
   }
+  updateWish(){
+    DateTime today = DateTime.now();
+    int h=today.toLocal().hour;
+    if(h>=0 && h<12){
+      wish='Good Morning';
+    }
+    else if(h>=12 && h<17){
+      wish='Good Afternoon';
+    }
+    else{
+      wish='Good Evening';
+    }
+    notifyListeners();
 
-  // print(dateOnly);
+  }
+
+
 
 
   final Map<DateTime,List<TaskCard>> map={
-    DateTime(2024,7,1):[TaskCard(
-      backgroundColor: const Color(0XFF9BC3FF),
-      highlightedColor: const Color(0XFF458CFF),
-      imgSrc: 'images/swimming.png',
-      taskName: 'Swimming',
-    ),TaskCard(
-      backgroundColor: const Color(0XFF9BC3FF),
-      highlightedColor: const Color(0XFF458CFF),
-      imgSrc: 'images/swimming.png',
-      taskName: 'Swimming',
-    )]
+
 
 
   };
