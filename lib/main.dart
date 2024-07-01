@@ -1,7 +1,7 @@
 // import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
@@ -243,6 +243,14 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
                   // tooltip: 'Animate',
                   child: Icon(Icons.play_arrow),
                 );
+              }),
+
+              Consumer<Data>(builder: (context,data,child){
+                  return Column(children: [
+                      Text('${data.category}'),
+                      Text('${data.task}'),
+                      Text('${data.selectedTime?.format(context)}'),
+                  ],);
               }),
 
               Text('Tasks'),

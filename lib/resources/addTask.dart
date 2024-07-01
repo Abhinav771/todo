@@ -37,7 +37,7 @@ class _addTaskState extends State<addTask> {
   }
 
   String _dropdownValue='One';
-
+  TextEditingController _taskTEC =TextEditingController();
   @override
   Widget build(BuildContext context) {
 
@@ -50,7 +50,9 @@ class _addTaskState extends State<addTask> {
                  return Consumer<Percentage>(builder: (context,per,child){
                   return TextButton(onPressed: (){
                   per.incTotalTask();
-
+                  data.updateCat(_dropdownValue);
+                  data.updateTask(_taskTEC.text);
+                  data.updateTime(selectedTime);
                   Navigator.of(context).pop();
                   }
 
@@ -142,6 +144,7 @@ class _addTaskState extends State<addTask> {
                     SizedBox(
                       width: 200,
                       child: TextFormField(
+                        controller: _taskTEC,
                         decoration: InputDecoration(
                           hintText: 'Enter Task', // This is your hint text
                         ),
