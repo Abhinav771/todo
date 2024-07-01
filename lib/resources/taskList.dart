@@ -30,6 +30,7 @@ class TaskList with ChangeNotifier {
       taskName: 'Swimming',
     )]
 
+
   };
 
   final List<TaskCard> tasks = [
@@ -86,7 +87,7 @@ class TaskList with ChangeNotifier {
 
   void updateDateMap(DateTime date,String category, String taskName, TimeOfDay? time){
     if (map.containsKey(date)) {
-      map[date]?.add(
+      map[DateTime(date.toLocal().year,date.toLocal().month,date.toLocal().day)]?.add(
           TaskCard(
             backgroundColor: bgColor[category]!, // No need for the ! operator
             highlightedColor: highColor[category]!,
@@ -95,14 +96,13 @@ class TaskList with ChangeNotifier {
           )
       );
     } else {
-      map[date]?.add(
-          TaskCard(
-            backgroundColor: bgColor[category]!, // No need for the ! operator
-            highlightedColor: highColor[category]!,
-            imgSrc: catImg[category]!, // No need for the ! operator
-            taskName: taskName,
-          )
-      );
+      map[DateTime(date.toLocal().year,date.toLocal().month,date.toLocal().day)]=[TaskCard(
+        backgroundColor: bgColor[category]!, // No need for the ! operator
+        highlightedColor: highColor[category]!,
+        imgSrc: catImg[category]!, // No need for the ! operator
+        taskName: taskName,
+      )];
+
 
 
     }
