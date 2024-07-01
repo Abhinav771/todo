@@ -11,12 +11,15 @@ import 'package:todo/resources/addTask.dart';
 import 'package:todo/resources/productivity.dart';
 import 'package:todo/resources/percentage.dart';
 import 'package:provider/provider.dart';
+import 'package:todo/resources/taskList.dart';
+
 
 void main() {
   runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider<Percentage>(create: (_) => Percentage()),
         ChangeNotifierProvider<Data>(create: (_) => Data()),
+        ChangeNotifierProvider<TaskList>(create: (_) => TaskList()),
       ],
       child:MaterialApp(home: MyApp(),),),);
 }

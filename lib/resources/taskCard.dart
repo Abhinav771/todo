@@ -94,8 +94,8 @@ class _TaskCardState extends State<TaskCard> {
                         borderColor: widget.backgroundColor,
                         animationDuration: Duration(milliseconds: 250),
                         onTap: (selected) {
+                          per.updateTaskComp();
 
-                          per.incTaskComp();
                         },
                       );
                     }),
