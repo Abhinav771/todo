@@ -4,7 +4,14 @@ import 'package:todo/resources/taskCard.dart';
 
 class TaskList with ChangeNotifier {
   // List to store TaskCard objects
-  final List<TaskCard> tasks = [];
+  final List<TaskCard> tasks = [
+    TaskCard(
+      backgroundColor: const Color(0XFF9BC3FF),
+      highlightedColor: const Color(0XFF458CFF),
+      imgSrc: 'images/swimming.png',
+      taskName: 'Swimming',
+    )
+  ];
 
   // Maps for category images, background colors, and highlighted colors
   final Map<String, String> catImg = {
@@ -42,7 +49,7 @@ class TaskList with ChangeNotifier {
         highlightedColor: highColor[category]!,
         imgSrc: catImg[category]!, // No need for the ! operator
         taskName: taskName,
-      ),
+      )
     );
 
     notifyListeners();

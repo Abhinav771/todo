@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/resources/percentage.dart';
+import 'package:todo/resources/taskList.dart';
 
 import 'data.dart';
 
@@ -46,24 +47,31 @@ class _addTaskState extends State<addTask> {
       AlertDialog(
 
             actions: [
-              Consumer<Data>(builder: (context,data,child){
-                 return Consumer<Percentage>(builder: (context,per,child){
-                  return TextButton(onPressed: (){
-                  per.incTotalTask();
-                  data.updateCat(_dropdownValue);
-                  data.updateTask(_taskTEC.text);
-                  data.updateTime(selectedTime);
-                  data.updateDetails(_dropdownValue, _taskTEC.text, selectedTime);
+              Consumer<TaskList>(builder: (context,taskList,child){
+                return Consumer<Data>(builder: (context,data,child){
+                  return Consumer<Percentage>(builder: (context,per,child){
+                    return TextButton(onPressed: (){
+                      per.incTotalTask();
+                      data.updateCat(_dropdownValue);
+                      data.updateTask(_taskTEC.text);
+                      data.updateTime(selectedTime);
+                      // taskList.updateTaskList(_dropdownValue, _taskTEC.text, selectedTime);
+                      data.updateDetails(_dropdownValue, _taskTEC.text, selectedTime);
+                      taskList.tasks;
+                      taskList.updateTaskList('Work', "work", selectedTime);
 
-                  Navigator.of(context).pop();
-                  }
+
+                      Navigator.of(context).pop();
+                    }
 
 
 
 
-                  ,child: Text('Add Task'));
+                        ,child: Text('Add Task'));
                   });
+                });
               }),
+
 
 
 
