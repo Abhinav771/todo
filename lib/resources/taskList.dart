@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:todo/resources/taskCard.dart';
 
 class TaskList with ChangeNotifier {
-  // List to store TaskCard objects
+
+  Map<DateTime,List<TaskCard>> map={
+
+  };
+
   final List<TaskCard> tasks = [
     TaskCard(
       backgroundColor: const Color(0XFF9BC3FF),
@@ -54,4 +58,33 @@ class TaskList with ChangeNotifier {
 
     notifyListeners();
   }
+
+
+  void updateDateMap(DateTime date,String category, String taskName, TimeOfDay? time){
+    if (map.containsKey(date)) {
+      map[date]?.add(
+          TaskCard(
+            backgroundColor: bgColor[category]!, // No need for the ! operator
+            highlightedColor: highColor[category]!,
+            imgSrc: catImg[category]!, // No need for the ! operator
+            taskName: taskName,
+          )
+      );
+    } else {
+      map[date]?.add(
+          TaskCard(
+            backgroundColor: bgColor[category]!, // No need for the ! operator
+            highlightedColor: highColor[category]!,
+            imgSrc: catImg[category]!, // No need for the ! operator
+            taskName: taskName,
+          )
+      );
+
+
+    }
+    updateTaskList( category,  taskName,  time);
+    notifyListeners();
+  }
+
+
 }

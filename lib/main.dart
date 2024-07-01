@@ -45,46 +45,46 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
   var days={1:'Mon',2:'Tue',3:'Wed',4:'Thr',5:'Fri',6:'Sat',7:'Sun'};
 
 
-  List<TaskCard> tasks=[
-    TaskCard(
-      backgroundColor: const Color(0XFF9BC3FF),
-      highlightedColor: const Color(0XFF458CFF),
-      imgSrc: 'images/swimming.png',
-      taskName: 'Swimming',
-    ),
-    TaskCard(
-      backgroundColor: const Color(0XFF65DCB2),
-      highlightedColor: const Color(0XFF0EC075),
-      imgSrc: 'images/running.png',
-      taskName: 'Running',
-    ),
-    TaskCard(
-      backgroundColor: const Color(0XFFFFE29C),
-      highlightedColor: const Color(0XFFFFC536),
-      imgSrc: 'images/yoga.png',
-      taskName: 'Yoga',
-    ),
-    TaskCard(
-      backgroundColor: const Color(0XFF4FD7F4),
-      highlightedColor: const Color(0XFF126B7E),
-      imgSrc: 'images/work.png',
-      taskName: 'Work',
-    ),
-    TaskCard(
-      backgroundColor: const Color(0XFFFBCEE2),
-      highlightedColor: const Color(0XFFF69FC2),
-      imgSrc: 'images/shopping.png',
-      taskName: 'Shopping',
-    ),
-    TaskCard(
-      backgroundColor: const Color(0XFFFFAD5E),
-      highlightedColor: const Color(0XFFFE810A),
-      imgSrc: 'images/other.png',
-      taskName: 'Other',
-    ),
-  ];
-
-
+  // List<TaskCard> tasks=[
+  //   TaskCard(
+  //     backgroundColor: const Color(0XFF9BC3FF),
+  //     highlightedColor: const Color(0XFF458CFF),
+  //     imgSrc: 'images/swimming.png',
+  //     taskName: 'Swimming',
+  //   ),
+  //   TaskCard(
+  //     backgroundColor: const Color(0XFF65DCB2),
+  //     highlightedColor: const Color(0XFF0EC075),
+  //     imgSrc: 'images/running.png',
+  //     taskName: 'Running',
+  //   ),
+  //   TaskCard(
+  //     backgroundColor: const Color(0XFFFFE29C),
+  //     highlightedColor: const Color(0XFFFFC536),
+  //     imgSrc: 'images/yoga.png',
+  //     taskName: 'Yoga',
+  //   ),
+  //   TaskCard(
+  //     backgroundColor: const Color(0XFF4FD7F4),
+  //     highlightedColor: const Color(0XFF126B7E),
+  //     imgSrc: 'images/work.png',
+  //     taskName: 'Work',
+  //   ),
+  //   TaskCard(
+  //     backgroundColor: const Color(0XFFFBCEE2),
+  //     highlightedColor: const Color(0XFFF69FC2),
+  //     imgSrc: 'images/shopping.png',
+  //     taskName: 'Shopping',
+  //   ),
+  //   TaskCard(
+  //     backgroundColor: const Color(0XFFFFAD5E),
+  //     highlightedColor: const Color(0XFFFE810A),
+  //     imgSrc: 'images/other.png',
+  //     taskName: 'Other',
+  //   ),
+  // ];
+  //
+  //
 
 
 
@@ -194,7 +194,7 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
                   Color textColor = isSelected ? Colors.white : Colors.black;
                   return InkWell(
                       onTap: () {
-                    onDayPressed();
+                          onDayPressed();
                                   },
                     child: Container(
 
