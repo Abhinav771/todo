@@ -257,14 +257,17 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
               }),
 
               Text('Tasks'),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: tasks.length,
-                  itemBuilder: (context, index) {
-                    return tasks[index];
-                  },
-                ),
-              ),
+              Consumer<TaskList>(builder: (context,taskList,child){
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: taskList.tasks.length,//tasks.length,
+                    itemBuilder: (context, index) {
+                      return taskList.tasks[index];//tasks[index];
+                    },
+                  ),
+                );
+              }),
+
 
 
 
