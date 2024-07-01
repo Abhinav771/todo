@@ -3,8 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:todo/resources/taskCard.dart';
 
 class TaskList with ChangeNotifier {
+  DateTime focusDate=DateTime(2024,7,1);
 
-  Map<DateTime,List<TaskCard>> map={
+  updateDate(){
+    DateTime today = DateTime.now();
+    int day = today.toLocal().day;
+    int month = today.toLocal().month;
+    int year = today.toLocal().year;
+    focusDate = DateTime(year, month, day);
+    notifyListeners();
+  }
+
+  // print(dateOnly);
+
+
+  final Map<DateTime,List<TaskCard>> map={
+    DateTime(2024,7,1):[TaskCard(
+      backgroundColor: const Color(0XFF9BC3FF),
+      highlightedColor: const Color(0XFF458CFF),
+      imgSrc: 'images/swimming.png',
+      taskName: 'Swimming',
+    ),TaskCard(
+      backgroundColor: const Color(0XFF9BC3FF),
+      highlightedColor: const Color(0XFF458CFF),
+      imgSrc: 'images/swimming.png',
+      taskName: 'Swimming',
+    )]
 
   };
 
@@ -88,3 +112,4 @@ class TaskList with ChangeNotifier {
 
 
 }
+

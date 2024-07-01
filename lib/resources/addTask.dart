@@ -59,6 +59,7 @@ class _addTaskState extends State<addTask> {
                       data.updateDetails(_dropdownValue, _taskTEC.text, selectedTime);
                       taskList.tasks;
                       taskList.updateTaskList(data.category, _taskTEC.text, selectedTime);
+                      taskList.updateDateMap(taskList.focusDate, data.category, _taskTEC.text, selectedTime);
 
 
                       Navigator.of(context).pop();
