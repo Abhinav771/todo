@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/resources/percentage.dart';
 
+import 'data.dart';
+
 
 
 
@@ -40,17 +42,26 @@ class _addTaskState extends State<addTask> {
   Widget build(BuildContext context) {
 
     return
+
       AlertDialog(
+
             actions: [
-                TextButton(onPressed: (){
-                  // per.incTotalTask();
+              Consumer<Data>(builder: (context,data,child){
+                 return Consumer<Percentage>(builder: (context,per,child){
+                  return TextButton(onPressed: (){
+                  per.incTotalTask();
+
                   Navigator.of(context).pop();
                   }
 
 
 
 
-                    ,child: Text('Add Task')),
+                  ,child: Text('Add Task'));
+                  });
+              }),
+
+
 
 
 

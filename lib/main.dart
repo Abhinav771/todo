@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
+import 'package:todo/resources/data.dart';
 import 'package:todo/resources/taskCard.dart';
 import 'package:todo/resources/addTask.dart';
 import 'package:todo/resources/productivity.dart';
@@ -12,7 +13,12 @@ import 'package:todo/resources/percentage.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MaterialApp(home: MyApp(),));
+  runApp(MultiProvider(
+      providers: [
+        ChangeNotifierProvider<Percentage>(create: (_) => Percentage()),
+        ChangeNotifierProvider<Data>(create: (_) => Data()),
+      ],
+      child:MaterialApp(home: MyApp(),),),);
 }
 
 class MyApp extends StatefulWidget {
@@ -88,11 +94,7 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
   }
   @override
   Widget build(BuildContext context) {
-    return  MultiProvider(
-      providers: [
-        ChangeNotifierProvider<Percentage>(create: (_) => Percentage()),
-      ],
-      child: Scaffold(
+    return   Scaffold(
 
           body:
           SafeArea(
@@ -286,7 +288,7 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
                   onPressed: () {
 
                     showDialog(context: context, builder: (context)=>addTask(), );
-                    per.incTotalTask();
+                    // per.incTotalTask();
 
 
 
@@ -302,8 +304,8 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
 
 
 
-      ),
-    );
+      );
+
   }
 }
 
