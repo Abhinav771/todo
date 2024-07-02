@@ -5,7 +5,7 @@ import 'package:todo/resources/taskCard.dart';
 class TaskList with ChangeNotifier {
   String wish='Good Night';
 
-  DateTime focusDate=DateTime(2024,7,1);
+  DateTime focusDate=DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day);
 
   updateDate(){
     DateTime today = DateTime.now();
