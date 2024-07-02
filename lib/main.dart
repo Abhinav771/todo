@@ -62,6 +62,7 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
   }
 
 
+
   @override
   Widget build(BuildContext context) {
     return   Scaffold(
@@ -82,11 +83,11 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
                       children: [
                         TextSpan(
                           text: 'Hello ',
-                          style: TextStyle(fontSize: 24.0, color: Colors.black,fontWeight: FontWeight.w500),
+                          style: TextStyle(fontSize: 24.0, color: Colors.black,fontWeight: FontWeight.w900,fontFamily: "OpenSans"),
                         ),
                         TextSpan(
                           text: '$user_name'+'!',
-                          style: TextStyle(fontSize: 32.0, color: Colors.blue, fontWeight: FontWeight.w900),
+                          style: TextStyle(fontSize: 32.0, color: Colors.blue, fontWeight: FontWeight.w900,fontFamily: "OpenSans"),
                         ),
 
                       ],
@@ -96,10 +97,13 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
                 ),
 
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: Text('Good Morning',style: TextStyle(color: Color(0XFF777777)),),
-              ),
+              Consumer<TaskList>(builder: (context,taskList,child){
+                return Padding(
+                  padding: const EdgeInsets.only(left: 16),
+                  child: Text('${taskList.wish}',style: TextStyle(color: Color(0XFF777777),fontFamily: "OpenSans"),),
+                );
+              }),
+
               SizedBox(height: 16,),
               SizedBox(
                 // height: 420,
@@ -112,7 +116,7 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
                     children: [
                       Consumer<Percentage>(builder: (context,per,child){
                         return  Column(children: [
-                          Text('Task Completed!',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700),),
+                          Text('Task Completed!',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w900,fontFamily: "OpenSans"),),
 
                           Container(
                               child: Row(children: [
@@ -121,11 +125,15 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
                                   style: TextStyle(
                                       fontSize: 30,
                                       color: Color(0XFF0BC682),
-                                      fontWeight: FontWeight.w900),),
+                                      fontWeight: FontWeight.w900,
+                                      fontFamily: "OpenSans"
+                                  ),),
                                 Text('/${per.totalTasks}',
                                   style: TextStyle(
                                       fontSize: 30,
-                                      fontWeight: FontWeight.w900),)
+                                      fontWeight: FontWeight.w900,
+                                      fontFamily: "OpenSans"
+                                  ),)
                               ],)
 
                           ),
@@ -144,7 +152,8 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
                           center: Text('${(per.percentage * 100).toInt()}%',
                             style: TextStyle(
                               fontSize: 20,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w900,
+                                fontFamily: "OpenSans"
                             ),
                           ),
                           backgroundColor: Color(0XFFC6FEF1),
@@ -201,16 +210,18 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
                               '${date.day}',
                               style: TextStyle(
                                 color: textColor,
+                                fontFamily: "OpenSans",
                                 fontWeight:
-                                isSelected ? FontWeight.bold : FontWeight.normal,
+                                isSelected ? FontWeight.w900 : FontWeight.w500,
                               ),
                             ),
                             Text(
                               '${days[date.weekday]}',
                               style: TextStyle(
                                 color: textColor,
+                                fontFamily: "OpenSans",
                                 fontWeight:
-                                isSelected ? FontWeight.bold : FontWeight.normal,
+                                isSelected ? FontWeight.w900 : FontWeight.w500,
                               ),
                             ),
                           ],
@@ -246,9 +257,15 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
               //     ],);
               // }),
 
-              Text('Tasks',style: TextStyle(
-                fontSize: 24,
-              ),),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Tasks',style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w800,
+                    fontFamily: "OpenSans",
+
+                ),),
+              ),
               Consumer<TaskList>(builder: (context,taskList,child){
                 return Expanded(
                   child: ListView.builder(

@@ -8,6 +8,7 @@ import 'package:roundcheckbox/roundcheckbox.dart';
 import 'package:todo/resources/percentage.dart';
 
 import 'checkBox.dart';
+import 'data.dart';
 
 
 
@@ -124,16 +125,20 @@ class _TaskCardState extends State<TaskCard> {
                                 fontWeight: FontWeight.w900,
                                 fontSize: 30,
                                 color: widget.highlightedColor,
+                                  fontFamily: "OpenSans",
                               ),
                             ),
-                            Text(
-                              '3:00 - 4:00',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                fontSize: 15,
-                                color: widget.highlightedColor,
-                              ),
-                            ),
+                            Consumer<Data>(builder: (context,data,child){
+                              return Text(
+                                '      ${data.selectedTime?.format(context)}      ',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 15,
+                                  color: widget.highlightedColor,
+                                ),
+                              );
+                            }),
+
                           ],
                         ),
                       ),
@@ -155,26 +160,35 @@ class _TaskCardState extends State<TaskCard> {
                       //   );
                       //
                       // }),
+                Consumer<Percentage>(builder: (context,per,child){
+                  return
+                  Transform.scale(
+                    scale: 2.5,
+                    child: Checkbox(
+                      activeColor: widget.highlightedColor, // Use widget.bgColor for active color (when checked)
+                      checkColor: Colors.white, // Color of the check mark
+                      fillColor: MaterialStateProperty.resolveWith(getColor),
+                      shape: CircleBorder(),
+                      side: BorderSide(color: Colors.transparent),
+                      value: isChecked,
+                      onChanged: (bool? value) {
+                        setState(() {
 
-                Transform.scale(
-                  scale: 2.5,
-                  child: Checkbox(
-                    activeColor: widget.highlightedColor, // Use widget.bgColor for active color (when checked)
-                    checkColor: Colors.white, // Color of the check mark
-                    fillColor: MaterialStateProperty.resolveWith(getColor),
-                    shape: CircleBorder(),
-                    side: BorderSide(color: Colors.transparent),
-                    value: isChecked,
-                    onChanged: (bool? value) {
-                      setState(() {
+                          isChecked = value ?? false;
+                          if(isChecked==true){
+                            per.incTaskComp();
+                          }
+                          else{
+                            per.decTaskComp();
+                          }
 
-                        isChecked = value ?? false;
+                        });
 
-                      });
+                      },
+                    ),
+                  );
+                }),
 
-                    },
-                  ),
-                ),
                     ],
                   ),
                 ),

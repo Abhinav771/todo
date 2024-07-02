@@ -68,7 +68,10 @@ class _addTaskState extends State<addTask> {
 
 
 
-                        ,child: Text('Add Task'));
+                        ,child: Text('Add Task',style: TextStyle(
+                            fontFamily: "OpenSans",
+                            fontWeight: FontWeight.w500,
+                        ),));
                   });
                 });
               }),
@@ -82,6 +85,7 @@ class _addTaskState extends State<addTask> {
             title: Text('Add New Task',style: TextStyle(
               fontSize: 25,
               fontWeight: FontWeight.w800,
+                fontFamily: "OpenSans",
             ),),
             content: SizedBox(
               height: 250,
@@ -106,6 +110,8 @@ class _addTaskState extends State<addTask> {
                             child: Text('Work',
                               style: TextStyle(
                                 fontSize: 20,
+                                  fontFamily: "OpenSans",
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                           ),
@@ -175,6 +181,7 @@ class _addTaskState extends State<addTask> {
                           Text('Starting Time: ',
                             style: TextStyle(
                               fontSize: 15,
+                                fontFamily: "OpenSans",
                             ),
                           ),
 
