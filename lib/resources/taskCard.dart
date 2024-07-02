@@ -154,16 +154,24 @@ class CheckboxExample extends StatefulWidget {
 class _CheckboxExampleState extends State<CheckboxExample> {
   bool isChecked = false;
 
+
+
   Color getColor(Set<MaterialState> states) {
     const Set<MaterialState> interactiveStates = <MaterialState>{
       MaterialState.pressed,
       MaterialState.hovered,
       MaterialState.focused,
     };
-    if (states.any(interactiveStates.contains)) {
-      return Colors.yellow;
+
+    if (states.contains(MaterialState.selected)) {
+      // Checked state
+      return Color(0xFF126B7E); // Background color when checked
+    } else if (states.any(interactiveStates.contains)) {
+      // States like pressed, hovered, focused (unchecked)
+      return Colors.yellow; // Background color when interactive (unchecked)
+    } else {
+      return Colors.white; // Default background color when unchecked and not interactive
     }
-    return Colors.red;
   }
 
   @override
@@ -171,13 +179,14 @@ class _CheckboxExampleState extends State<CheckboxExample> {
     return Transform.scale(
       scale: 2.5,
       child: Checkbox(
+
         activeColor: Color(0xFF126B7E),
         checkColor: Colors.white,
         focusColor: Colors.red,
         side: BorderSide(color:Colors.transparent,width: 10),
         shape:
         RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-        // fillColor: MaterialStateProperty.resolveWith(getColor),
+        fillColor: MaterialStateProperty.resolveWith(getColor),
         value: isChecked,
         onChanged: (bool? value) {
           setState(() {
