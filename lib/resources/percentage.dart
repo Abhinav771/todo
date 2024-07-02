@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 class Percentage with ChangeNotifier{
+
   int taskCompleted=0;
   int totalTasks=0;
   double percentage=0;

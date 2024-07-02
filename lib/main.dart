@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
+import 'package:todo/resources/checkBox.dart';
 import 'package:todo/resources/data.dart';
 import 'package:todo/resources/taskCard.dart';
 import 'package:todo/resources/addTask.dart';
@@ -20,6 +21,7 @@ void main() {
         ChangeNotifierProvider<Percentage>(create: (_) => Percentage()),
         ChangeNotifierProvider<Data>(create: (_) => Data()),
         ChangeNotifierProvider<TaskList>(create: (_) => TaskList()),
+        ChangeNotifierProvider<CheckboxExample>(create: (_) => CheckboxExample()),
       ],
       child:MaterialApp(home: MyApp(),),),);
 }
