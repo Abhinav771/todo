@@ -21,7 +21,7 @@ void main() {
         ChangeNotifierProvider<Percentage>(create: (_) => Percentage()),
         ChangeNotifierProvider<Data>(create: (_) => Data()),
         ChangeNotifierProvider<TaskList>(create: (_) => TaskList()),
-        ChangeNotifierProvider<CheckboxExample>(create: (_) => CheckboxExample()),
+        // ChangeNotifierProvider<CheckboxExample>(create: (_) => CheckboxExample()),
       ],
       child:MaterialApp(home: MyApp(),),),);
 }
