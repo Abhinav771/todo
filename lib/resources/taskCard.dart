@@ -50,12 +50,39 @@ class _TaskCardState extends State<TaskCard> {
   //     // You can call other functions or update state as needed
   //   };
   // }
+  bool isChecked=false;
+  Color getColor(Set<MaterialState> states) {
+    const Set<MaterialState> interactiveStates = <MaterialState>{
+      MaterialState.pressed,
+      MaterialState.hovered,
+      MaterialState.focused,
+    };
+
+    if (states.contains(MaterialState.selected)) {
+      // Checked state
+      return widget.highlightedColor; // Use widget.bgColor for checked state color
+    } else if (states.any(interactiveStates.contains)) {
+      // States like pressed, hovered, focused (unchecked)
+      return Colors.yellow; // Background color when interactive (unchecked)
+    } else {
+      return Colors.white; // Default background color when unchecked and not interactive
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
 
     return GestureDetector(
       onTap: (){
+        setState(() {
+          if(isChecked==true){
+            isChecked=false;
+          }
+          else{
+            isChecked=true;
+          }
+        });
+
 
       },
       child: Container(
@@ -128,7 +155,26 @@ class _TaskCardState extends State<TaskCard> {
                       //   );
                       //
                       // }),
-                         CheckboxExample(),
+
+                Transform.scale(
+                  scale: 2.5,
+                  child: Checkbox(
+                    activeColor: widget.highlightedColor, // Use widget.bgColor for active color (when checked)
+                    checkColor: Colors.white, // Color of the check mark
+                    fillColor: MaterialStateProperty.resolveWith(getColor),
+                    shape: CircleBorder(),
+                    side: BorderSide(color: Colors.transparent),
+                    value: isChecked,
+                    onChanged: (bool? value) {
+                      setState(() {
+
+                        isChecked = value ?? false;
+
+                      });
+
+                    },
+                  ),
+                ),
                     ],
                   ),
                 ),
@@ -144,59 +190,3 @@ class _TaskCardState extends State<TaskCard> {
     );
   }
 }
-class CheckboxExample extends StatefulWidget {
-  const CheckboxExample({Key? key}) : super(key: key);
-
-  @override
-  _CheckboxExampleState createState() => _CheckboxExampleState();
-}
-
-class _CheckboxExampleState extends State<CheckboxExample> {
-  bool isChecked = false;
-
-
-
-  Color getColor(Set<MaterialState> states) {
-    const Set<MaterialState> interactiveStates = <MaterialState>{
-      MaterialState.pressed,
-      MaterialState.hovered,
-      MaterialState.focused,
-    };
-
-    if (states.contains(MaterialState.selected)) {
-      // Checked state
-      return Color(0xFF126B7E); // Background color when checked
-    } else if (states.any(interactiveStates.contains)) {
-      // States like pressed, hovered, focused (unchecked)
-      return Colors.yellow; // Background color when interactive (unchecked)
-    } else {
-      return Colors.white; // Default background color when unchecked and not interactive
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Transform.scale(
-      scale: 2.5,
-      child: Checkbox(
-
-        activeColor: Color(0xFF126B7E),
-        checkColor: Colors.white,
-        focusColor: Colors.red,
-        side: BorderSide(color:Colors.transparent,width: 10),
-        shape:
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-        fillColor: MaterialStateProperty.resolveWith(getColor),
-        value: isChecked,
-        onChanged: (bool? value) {
-          setState(() {
-            isChecked = value ?? false;
-          });
-        },
-      ),
-    );
-  }
-}
-
-
-
