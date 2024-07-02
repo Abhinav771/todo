@@ -26,40 +26,43 @@ class _productivityState extends State<productivity> {
       ),
 
       ),
-      content: Container(
-        // color: Colors.red,
+      content: Center(
+          child:Text('This feature release in upcomming version.')),
 
-        child: Column(children: [
-          SizedBox(
-            height: 200,
-            width: 300,
-            child: BarChart(
-              BarChartData(
-                barGroups: [
-                  BarChartGroupData(
-                      x: 10,
-                    barRods: [
-                      BarChartRodData(toY: 10),
-                    ]
-                  ),
-                  BarChartGroupData(
-                      x: 10,
-                      barRods: [
-                        BarChartRodData(toY: 16),
-                      ]
-                  ),
-                  BarChartGroupData(
-                      x: 10,
-                      barRods: [
-                        BarChartRodData(toY: 8),
-                      ]
-                  ),
-                ]
-              ),
-            ),
-          ),
-        ],),
-      ),
+      // Container(
+      //   // color: Colors.red,
+      //
+      //   child: Column(children: [
+      //     SizedBox(
+      //       height: 200,
+      //       width: 300,
+      //       child: BarChart(
+      //         BarChartData(
+      //           barGroups: [
+      //             BarChartGroupData(
+      //                 x: 10,
+      //               barRods: [
+      //                 BarChartRodData(toY: 10),
+      //               ]
+      //             ),
+      //             BarChartGroupData(
+      //                 x: 10,
+      //                 barRods: [
+      //                   BarChartRodData(toY: 16),
+      //                 ]
+      //             ),
+      //             BarChartGroupData(
+      //                 x: 10,
+      //                 barRods: [
+      //                   BarChartRodData(toY: 8),
+      //                 ]
+      //             ),
+      //           ]
+      //         ),
+      //       ),
+      //     ),
+      //   ],),
+      // ),
 
     );
   }

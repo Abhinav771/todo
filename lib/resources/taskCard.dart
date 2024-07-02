@@ -2,12 +2,13 @@
 
 // import 'dart:js';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:roundcheckbox/roundcheckbox.dart';
+// import 'package:roundcheckbox/roundcheckbox.dart';
 import 'package:todo/resources/percentage.dart';
 
-import 'checkBox.dart';
+// import 'checkBox.dart';
 import 'data.dart';
 
 
@@ -119,13 +120,19 @@ class _TaskCardState extends State<TaskCard> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              widget.taskName,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                fontSize: 30,
-                                color: widget.highlightedColor,
-                                  fontFamily: "OpenSans",
+                            SizedBox(
+                              width:140,
+                              child: SingleChildScrollView(
+                                scrollDirection:Axis.horizontal,
+                                child: Text(
+                                  widget.taskName,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 30,
+                                    color: widget.highlightedColor,
+                                      fontFamily: "OpenSans",
+                                  ),
+                                ),
                               ),
                             ),
                             Consumer<Data>(builder: (context,data,child){
