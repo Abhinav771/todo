@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/resources/percentage.dart';
 import 'package:todo/resources/taskList.dart';
@@ -101,7 +102,7 @@ class _addTaskState extends State<addTask> {
                         focusColor: CupertinoColors.systemGrey4,
 
                         value: _dropdownValue,
-                        icon: const Icon(Icons.arrow_drop_down),
+                        icon:  Icon(MdiIcons.arrowDownDropCircleOutline),
 
 
                         items: const [
