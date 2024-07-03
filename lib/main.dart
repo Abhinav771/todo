@@ -13,6 +13,7 @@ import 'package:todo/resources/productivity.dart';
 import 'package:todo/resources/percentage.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/resources/taskList.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 
 void main() {
@@ -300,9 +301,7 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
                     // Add your onPressed logic here
                     showDialog(context: context, builder: (context)=>productivity(),);
                   },
-                  child: Icon(Icons.bar_chart,
-
-                  color: Colors.white,),
+                  child: Icon(MdiIcons.chartBar,color: Colors.white,),
                   backgroundColor: Colors.blue,
                 ),
               ),
@@ -318,7 +317,7 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
 
                   },
                   backgroundColor: Colors.blue,
-                  child: Icon(Icons.add, color: Colors.white,),
+                  child: Icon(MdiIcons.plus,color: Colors.white,),//Icon(Icons.add, color: Colors.white,),
                 );
               }),
 
