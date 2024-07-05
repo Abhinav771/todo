@@ -46,6 +46,7 @@ class TaskList with ChangeNotifier {
       highlightedColor: const Color(0XFF458CFF),
       imgSrc: 'images/swimming.png',
       taskName: 'Swimming',
+
     )
   ];
 

@@ -20,13 +20,17 @@ class TaskCard extends StatefulWidget {
   final Color highlightedColor;
   final String imgSrc;
   final String taskName;
+  // final AnimationController confittiController;
 
   TaskCard({
     required this.backgroundColor,
     required this.highlightedColor,
     required this.imgSrc,
     required this.taskName,
-  });
+    // required this.confittiController,
+  }); 
+
+  // get confetti_controller => null;
 
   @override
   State<TaskCard> createState() => _TaskCardState();
@@ -188,6 +192,13 @@ class _TaskCardState extends State<TaskCard> {
                           else{
                             per.decTaskComp();
                           }
+
+                          // if(per.percentage==1){
+                          //   var ticker=widget.confetti_controller.forward();
+                          //   ticker.whenComplete(() {
+                          //     widget.confetti_controller.reset();
+                          //   });
+                          // }
 
                         });
 
