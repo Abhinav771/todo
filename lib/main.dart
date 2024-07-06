@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 // import 'package:percent_indicator/percent_indicator.dart';
 // import 'package:easy_date_timeline/easy_date_timeline.dart';
 // import 'package:todo/resources/checkBox.dart';
@@ -30,7 +31,7 @@ void main() async {
         ChangeNotifierProvider<TaskList>(create: (_) => TaskList()),
         // ChangeNotifierProvider<CheckboxExample>(create: (_) => CheckboxExample()),
       ],
-      child:MaterialApp(home: LandingScreen(),),),);
+      child:GetMaterialApp(home: LandingScreen(),),),);
 }
 
 // class MyApp extends StatefulWidget {
