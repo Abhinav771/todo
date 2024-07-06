@@ -24,12 +24,27 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
   late AnimationController _animationController;
   late final AnimationController confetti_controller;
-
+  String wish="";
+  updateWish(){
+    DateTime today = DateTime.now();
+    int h=today.toLocal().hour;
+    if(h>=0 && h<12){
+      wish='Good Morning';
+    }
+    else if(h>=12 && h<17){
+      wish='Good Afternoon';
+    }
+    else{
+      wish='Good Evening';
+    }
+  }
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     confetti_controller=AnimationController(vsync: this,duration: Duration(seconds: 3));
+    updateWish();
+
   }
 
   @override
@@ -42,7 +57,7 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
 
 
   String user_name='Abhinav';
-  String wish="Good Morning";
+  // String wish="Good Morning";
 
 
 
@@ -112,7 +127,7 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
                   Consumer<TaskList>(builder: (context,taskList,child){
                     return Padding(
                       padding: const EdgeInsets.only(left: 16),
-                      child: Text('${taskList.wish}',style: TextStyle(color: Color(0XFF777777),fontFamily: "OpenSans"),),
+                      child: Text('${wish}',style: TextStyle(color: Color(0XFF777777),fontFamily: "OpenSans"),),
                     );
                   }),
 

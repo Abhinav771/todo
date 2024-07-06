@@ -15,21 +15,6 @@ class TaskList with ChangeNotifier {
     focusDate = DateTime(year, month, day);
     notifyListeners();
   }
-  updateWish(){
-    DateTime today = DateTime.now();
-    int h=today.toLocal().hour;
-    if(h>=0 && h<12){
-      wish='Good Morning';
-    }
-    else if(h>=12 && h<17){
-      wish='Good Afternoon';
-    }
-    else{
-      wish='Good Evening';
-    }
-    notifyListeners();
-
-  }
 
 
 
