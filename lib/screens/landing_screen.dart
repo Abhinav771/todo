@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:todo/screens/home.dart';
+import 'package:todo/screens/wrapper.dart';
 
 
 class LandingScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class _LandingScreenState extends State<LandingScreen> {
   void _endWelcomePage(context){
     Navigator.pop(context);
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (_)=>MyApp())
+      MaterialPageRoute(builder: (_)=>Wrapper())
     );
   }
   @override

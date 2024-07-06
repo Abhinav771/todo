@@ -1,5 +1,6 @@
 // import 'dart:ffi';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,9 @@ import 'package:todo/resources/taskList.dart';
 import 'package:todo/screens/landing_screen.dart';
 
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider<Percentage>(create: (_) => Percentage()),

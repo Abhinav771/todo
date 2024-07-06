@@ -1,4 +1,5 @@
 import 'package:easy_date_timeline/easy_date_timeline.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -65,7 +66,9 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
   }
 
 
-
+  signout()async{
+    await FirebaseAuth.instance.signOut();
+  }
   @override
   Widget build(BuildContext context) {
     return
@@ -317,11 +320,12 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
               child: FloatingActionButton(
 
 
-                onPressed: () {
-                  // Add your onPressed logic here
-                  showDialog(context: context, builder: (context)=>productivity(),);
-                },
-                child: Icon(MdiIcons.chartBar,color: Colors.white,),
+                // onPressed: () {
+                //   // Add your onPressed logic here
+                //   showDialog(context: context, builder: (context)=>productivity(),);
+                // },
+                onPressed: (()=>signout()),
+                child: Icon(MdiIcons.logout,color: Colors.white,),
                 backgroundColor: Colors.blue,
               ),
             ),
