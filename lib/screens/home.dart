@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:todo/resources/taskList.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:lottie/lottie.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 
 class MyApp extends StatefulWidget {
@@ -82,6 +83,7 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
 
 
   signout()async{
+    await GoogleSignIn().signOut();
     await FirebaseAuth.instance.signOut();
   }
   @override
