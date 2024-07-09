@@ -2,23 +2,24 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
-// import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:percent_indicator/percent_indicator.dart';
-// import 'package:easy_date_timeline/easy_date_timeline.dart';
-// import 'package:todo/resources/checkBox.dart';
+import 'package:percent_indicator/percent_indicator.dart';
+import 'package:easy_date_timeline/easy_date_timeline.dart';
+import 'package:todo/resources/checkBox.dart';
 import 'package:todo/resources/data.dart';
-// import 'package:todo/resources/taskCard.dart';
-// import 'package:todo/resources/addTask.dart';
-// import 'package:todo/resources/productivity.dart';
+import 'package:todo/resources/taskCard.dart';
+import 'package:todo/resources/addTask.dart';
+import 'package:todo/resources/productivity.dart';
 import 'package:todo/resources/percentage.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/resources/taskList.dart';
-// import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-// import 'package:lottie/lottie.dart';
-// import 'package:todo/screens/home.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:lottie/lottie.dart';
+import 'package:todo/screens/home.dart';
 import 'package:todo/screens/landing_screen.dart';
+import 'package:todo/screens/wrapper.dart';
 
 
 void main() async {
@@ -31,7 +32,7 @@ void main() async {
         ChangeNotifierProvider<TaskList>(create: (_) => TaskList()),
         // ChangeNotifierProvider<CheckboxExample>(create: (_) => CheckboxExample()),
       ],
-      child:GetMaterialApp(home: LandingScreen(),),),);
+      child:MaterialApp(home: LandingScreen(),),),);
 }
 
 // class MyApp extends StatefulWidget {
@@ -206,69 +207,12 @@ void main() async {
 //                     ),
 //                     SizedBox(height: 16,),
 //                     Consumer<TaskList>(builder: (context,taskList,child){
-//                       return EasyInfiniteDateTimeLine(
-//
+//                       return  EasyInfiniteDateTimeLine(
 //                         controller: _controller,
 //                         firstDate: DateTime(2024),
 //                         focusDate: _focusDate,
 //                         lastDate: DateTime(2024, 12, 31),
-//                         // activeColor: Color(0XFF0BC682),
-//                         itemBuilder: (BuildContext context, DateTime date,
-//                             bool isHighlighted, void Function() onDayPressed) {
-//                           bool isSelected =
-//                               date.year == _focusDate.year &&
-//                                   date.month == _focusDate.month &&
-//                                   date.day == _focusDate.day;
-//                           Color textColor = isSelected ? Colors.white : Colors.black;
-//                           return InkWell(
-//                             onTap: () {
-//                               onDayPressed();
-//                             },
-//                             child: Container(
 //
-//                               alignment: Alignment.center,
-//                               decoration: BoxDecoration(
-//                                 color: isSelected ? Colors.green : Colors.transparent,
-//                                 borderRadius: BorderRadius.circular(8.0),
-//                                 border: Border.all(
-//                                   color: Colors.green, // Border color
-//                                   width: 1.0, // Border width
-//                                 ),
-//                               ),
-//                               child: Column(
-//                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                                 children: [
-//                                   Text(
-//                                     '${date.day}',
-//                                     style: TextStyle(
-//                                       color: textColor,
-//                                       fontFamily: "OpenSans",
-//                                       fontWeight:
-//                                       isSelected ? FontWeight.w900 : FontWeight.w500,
-//                                     ),
-//                                   ),
-//                                   Text(
-//                                     '${days[date.weekday]}',
-//                                     style: TextStyle(
-//                                       color: textColor,
-//                                       fontFamily: "OpenSans",
-//                                       fontWeight:
-//                                       isSelected ? FontWeight.w900 : FontWeight.w500,
-//                                     ),
-//                                   ),
-//                                 ],
-//
-//                               ),
-//
-//                             ),
-//                           );
-//                         },
-//                         onDateChange: (selectedDate) {
-//                           taskList.focusDate=selectedDate;
-//                           setState(() {
-//                             _focusDate = selectedDate;
-//                           });
-//                         },
 //                       );
 //                     }),
 //

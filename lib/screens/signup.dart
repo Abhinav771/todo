@@ -21,21 +21,48 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Form(
-          child: Column
-            (children: [
-              TextFormField(
-                controller: _email,
-                decoration: InputDecoration(hintText: 'Enter Email'),
+        child: Center(
+          child: SizedBox(
+            width: 300,
+            child: Form(
+              child: Column
+                (children: [
+                  SizedBox(height: 80,),
+                Text('SIGN UP',style: TextStyle(fontSize: 50,fontFamily: 'OpenSans',fontWeight: FontWeight.w500),),
+                 SizedBox(height: 40,),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: _email,
+                      decoration: InputDecoration(hintText: 'Enter Email'),
 
-              ),
-              TextFormField(
-                controller: _password,
-                decoration: InputDecoration(hintText: 'Enter Password'),
-                obscureText: true,
-              ),
-              ElevatedButton(onPressed: (()=>signup()), child: Text('Sign Up')),
-          ],),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: _password,
+                      decoration: InputDecoration(hintText: 'Enter Password'),
+                      obscureText: true,
+                    ),
+                  ),
+                SizedBox(height: 30,),
+                SizedBox(
+                  width: 120,
+                  child: ElevatedButton(onPressed: (()=>signup()), child: Text('Sign Up',style: TextStyle(fontSize: 16),),
+
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white, backgroundColor: Colors.blue, // Text color
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0), // Rounded corners
+                      ),
+                    ),
+                  ),
+                ),
+              ],),
+            ),
+          ),
         ),
       ),
     );
