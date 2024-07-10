@@ -20,6 +20,7 @@ class TaskCard extends StatefulWidget {
   final Color highlightedColor;
   final String imgSrc;
   final String taskName;
+  final TimeOfDay? time;
   // final AnimationController confittiController;
 
   TaskCard({
@@ -27,6 +28,7 @@ class TaskCard extends StatefulWidget {
     required this.highlightedColor,
     required this.imgSrc,
     required this.taskName,
+    required this.time,
     // required this.confittiController,
   }); 
 
@@ -141,7 +143,7 @@ class _TaskCardState extends State<TaskCard> {
                             ),
                             Consumer<Data>(builder: (context,data,child){
                               return Text(
-                                '      ${data.selectedTime?.format(context)}      ',
+                                '      ${widget.time?.format(context)}      ',
                                 style: TextStyle(
                                   fontWeight: FontWeight.w900,
                                   fontSize: 15,

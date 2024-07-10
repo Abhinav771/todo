@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:todo/screens/home.dart';
 import 'package:todo/screens/wrapper.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 
 class LandingScreen extends StatefulWidget {
@@ -28,7 +29,7 @@ class _LandingScreenState extends State<LandingScreen> {
             showSkipButton: true,
             showDoneButton: true,
             showBottomPart: true,
-            next:Icon(Icons.navigate_next),
+            next:Icon(MdiIcons.arrowRight),
             skip: Text('Skip'),
             done: Text('Done'),
             onDone: (){

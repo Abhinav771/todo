@@ -71,7 +71,14 @@ class _LoginState extends State<Login> {
                 children: [
                   Text('LOGIN',style: TextStyle(fontSize: 50,fontFamily: 'OpenSans',fontWeight: FontWeight.w500),),
                   SizedBox(height: 40,),
-                  Padding(
+                  // Padding(
+                  // padding: const EdgeInsets.all(8.0),
+                  // child: TextFormField(
+                  //   controller: _email,
+                  //   decoration: InputDecoration(hintText: 'Enter Your Name'),
+                  // ),
+                // ),
+            Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     controller: _email,

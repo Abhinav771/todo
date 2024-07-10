@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:todo/screens/wrapper.dart';
+
+import '../resources/data.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -13,10 +16,14 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   TextEditingController _email =TextEditingController();
   TextEditingController _password =TextEditingController();
+  TextEditingController _name =TextEditingController();
   signup()async{
+    // await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email.text, password: _password.text);
     await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email.text, password: _password.text);
+    // Get.offAll(const Wrapper());
     Get.offAll(Wrapper());
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +40,13 @@ class _SignUpState extends State<SignUp> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
+                      controller: _name,
+                      decoration: InputDecoration(hintText: 'Enter Your Name'),
+
+                    ),
+                  ), Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
                       controller: _email,
                       decoration: InputDecoration(hintText: 'Enter Email'),
 
@@ -47,19 +61,28 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                 SizedBox(height: 30,),
-                SizedBox(
-                  width: 120,
-                  child: ElevatedButton(onPressed: (()=>signup()), child: Text('Sign Up',style: TextStyle(fontSize: 16),),
+                Consumer<Data>(builder: (context,data,child){
+                  return SizedBox(
+                    width: 120,
+                    child: ElevatedButton(onPressed: (()=>signup())
+                      // print('Hello');
+                      // data.updateName(_name.text);
+                      // signup();
 
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white, backgroundColor: Colors.blue, // Text color
-                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0), // Rounded corners
+                    , child: Text('Sign Up',style: TextStyle(fontSize: 16),),
+
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white, backgroundColor: Colors.blue, // Text color
+                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0), // Rounded corners
+                        ),
                       ),
                     ),
-                  ),
-                ),
+                  );
+                }),
+
+
               ],),
             ),
           ),

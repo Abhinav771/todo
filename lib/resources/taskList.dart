@@ -31,6 +31,7 @@ class TaskList with ChangeNotifier {
       highlightedColor: const Color(0XFF458CFF),
       imgSrc: 'images/swimming.png',
       taskName: 'Swimming',
+      time:TimeOfDay.now(),
 
     )
   ];
@@ -71,6 +72,7 @@ class TaskList with ChangeNotifier {
         highlightedColor: highColor[category]!,
         imgSrc: catImg[category]!, // No need for the ! operator
         taskName: taskName,
+        time:time,
       )
     );
 
@@ -86,6 +88,7 @@ class TaskList with ChangeNotifier {
             highlightedColor: highColor[category]!,
             imgSrc: catImg[category]!, // No need for the ! operator
             taskName: taskName,
+            time:time,
           )
       );
     } else {
@@ -94,6 +97,7 @@ class TaskList with ChangeNotifier {
         highlightedColor: highColor[category]!,
         imgSrc: catImg[category]!, // No need for the ! operator
         taskName: taskName,
+        time:time,
       )];
 
 

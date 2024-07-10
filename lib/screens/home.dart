@@ -12,6 +12,8 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:lottie/lottie.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../resources/data.dart';
+
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -103,29 +105,35 @@ class _MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin{
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 15,),
-                  Container(
-                    child:
-                    Padding(
-                      padding: const EdgeInsets.only(left: 16),
-                      child: RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Hello ',
-                              style: TextStyle(fontSize: 24.0, color: Colors.black,fontWeight: FontWeight.w900,fontFamily: "OpenSans"),
-                            ),
-                            TextSpan(
-                              text: '$user_name'+'!',
-                              style: TextStyle(fontSize: 32.0, color: Colors.blue, fontWeight: FontWeight.w900,fontFamily: "OpenSans"),
-                            ),
+                  Consumer<Data>(builder: (context,data,child){
+                    return
+                      Container(
+                        child:
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16),
 
-                          ],
+                          child: RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Hello ',
+                                  style: TextStyle(fontSize: 24.0, color: Colors.black,fontWeight: FontWeight.w900,fontFamily: "OpenSans"),
+                                ),
+                                TextSpan(
+                                  text: '${data.name}'+'!',
+                                  style: TextStyle(fontSize: 32.0, color: Colors.blue, fontWeight: FontWeight.w900,fontFamily: "OpenSans"),
+                                ),
+
+                              ],
+                            ),
+                          ),
+
                         ),
-                      ),
 
-                    ),
+                      );
 
-                  ),
+                  }),
+
                   Consumer<TaskList>(builder: (context,taskList,child){
                     return Padding(
                       padding: const EdgeInsets.only(left: 16),
